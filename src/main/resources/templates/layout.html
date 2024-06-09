@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Space Go</title>
+    <!--Font AweSome JS-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<!--    <link rel="stylesheet" type="text/css" href="../static/css/style.css">-->
+    <link th:fragment="link-css" rel="stylesheet" th:href="@{/css/style.css}">
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+    <div class="container-fluid">
+        <div style="vertical-align: middle"><a class="navbar-brand text-white" href="/home/index">Space Go</a></div>
+       <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>-->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link text-white active" aria-current="page" href="/products">Sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-white active" aria-current="page" href="/categories">Danh mục</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+                    <a th:href="@{/products/add}" class="btn btn-primary mb-3">Thêm sản phẩm</a>
+                </li>
+                <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
+                    <a th:href="@{/categories/add}" class="btn btn-primary mb-3">Thêm danh mục</a>
+                </li>
+            </ul>
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
+                <!-- Cập nhật vị trí hiển thị tên người dùng để cân đối hơn -->
+                <li class="nav-item d-flex align-items-center" sec:authorize="isAuthenticated()">
+                    <span class="navbar-text text-white">
+                        Xin chào, <span sec:authentication="name" style="margin-right: 20px;"></span>
+                    </span>
+                </li>
+                <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <form th:action="@{/logout}" method="post">
+                        <button class="btn btn-outline-danger" type="submit" style="border-color: #f8d7da; color: #f8d7da;">Logout</button>
+                    </form>
+                </li>
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
+                    <a class="btn btn-outline-primary" href="/login" style="border-color: #b8daff; color: #b8daff;">Login</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="section">
+
+    <section layout:fragment="content" class="container">
+        &lt;!&ndash; Nội dung cụ thể của từng trang sẽ được đặt tại đây &ndash;&gt;
+    </section>
+</div>
+
+
+<footer>
+    <div class="container">
+        <img src="https://cyber-my-portfolio.vercel.app/img/g1.jpg"/>
+
+
+        <div class="content-footer">
+            <div class="footer-top text-center ">
+                <a href="#"><i class=" fab fa-facebook-f"></i></a>
+                <a href="#"><i class=" fab fa-twitter"></i></a>
+                <a href="#"><i class=" fab fa-google-plus-g"></i></a>
+                <a href="#"><i class=" fab fa-instagram"></i></a>
+                <a href="#"><i class=" fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-bot text-center">
+                <p>Copyright © 2020 All rights reserved | This template is made with by Pham Tien Thuan Phat</p>
+            </div>
+        </div>
+    </div>
+</footer>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

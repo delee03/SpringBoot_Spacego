@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}">
+<head>
+    <title>Add Product</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+</head>
+<body>
+<section layout:fragment="content" class="container mt-5">
+    <!-- BREADCRUMB -->
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4 fw-bolder">
+               Thêm sản phẩm mới
+            </h3>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                <li class="breadcrumb-item active text-white">Thêm sản phẩm</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- /BREADCRUMB -->
+<!--    <h1 class="text-white">Add New Product</h1>-->
+    <form th:action="@{/products/add}" th:object="${product}" method="post" enctype="multipart/form-data"
+          class="needs-validation" novalidate>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name:</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name"
+                   required placeholder="Tên sản phẩm">
+            <div class="text-danger" th:if="${#fields.hasErrors('name')}"
+                 th:errors="*{name}"></div>
+        </div>
+        <div class="mb-3">
+            <label for="mainImage" class="form-label">Image:</label>
+            <input type="file"  class="form-control" id="mainImage" name="mainImage" required placeholder="hinh anh">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Price:</label>
+            <input type="text" th:field="*{price}" class="form-control" id="price"
+                   required placeholder="Giá sản phẩm">
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category:</label>
+            <select th:field="*{category}" class="form-control" id="category" placeholder="Danh mục">
+                <option th:each="category : ${categories}"
+                        th:value="${category.id}" th:text="${category.name}"></option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description:</label>
+            <textarea th:field="*{description}" class="form-control"
+                      id="description" required placeholder="Mô tả">
+
+            </textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Product</button>
+        <a th:href="@{/products}" class="btn btn-link">Cancel</a>
+    </form>
+</section>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js">
+</script>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layout}"
+      lang="vi">
+<head>
+    <title th:text="${title} ?: 'Product'">Product</title>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+</head>
+<body>
+
+<section layout:fragment="content">
+    <!-- BREADCRUMB -->
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="text-white display-3 mb-4 fw-bolder">
+                Danh sách sản phẩm
+            </h3>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="/home/index">Trang chủ /</a></li>
+                <li class="breadcrumb-item active text-white">Sản phẩm</li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- /BREADCRUMB -->
+
+    <div>
+        <a th:href="@{/products/add}" class="btn btn-primary mb-3 me-auto">Thêm sản phẩm</a>
+    </div>
+
+    <div class="listProduct">
+       <div class="container">
+           <div class="row g-5">
+               <div  th:each="product : ${products}" class="col-4 item">
+                   <div class="card">
+                       <img
+                               class="card-img-top image-fluid"
+                               th:src="@{${product.mainImage}}"
+                               alt="Title"
+                       />
+                       <div class="card-body">
+
+                           <h4 class="card-title" th:text="${product.name}">
+
+                           </h4>
+                           <span  th:text="${product.price}"></span>
+                           <p ></p>
+                           <span th:text="${product.category.name}"></span>
+                           <p class="card-text" th:text="${product.description}">
+                           </p>
+
+                       </div>
+                       <div class="card-footer py-4 text-center">
+                           <a th:href="@{/products/edit/{id}(id=${product.id})}" class="primary-btn me-4">Sửa</a>
+                           <a th:href="@{/products/delete/{id}(id=${product.id})}" class="primary-btn" onclick="return confirm('Are you sure?')">Xóa</a>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+    </div>
+
+
+    <table class="table table-bordered table-hover">
+        <thead class="table-primary">
+        <h6>TESST</h6>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Image</th>
+            <th>Price</th>
+            <th>Description</th>
+            <th>Category Name</th>
+            <th>Actions</th>
+            <th>Add To Cart</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.name}"></td>
+            <td>
+               <img th:src="@{${product.mainImage}}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
+
+            </td>
+
+            <td th:text="${product.price}"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${product.category.name}"></td>
+            <td>
+                <!-- Hiển thị nút sửa và xóa chỉ dành cho người dùng ADMIN -->
+                <div sec:authorize="hasAuthority('ADMIN')">
+                    <a th:href="@{/products/edit/{id}(id=${product.id})}"
+                       class="btn btn-success btn-sm">Sửa</a>
+                    <a th:href="@{/products/delete/{id}(id=${product.id})}"
+                       class="btn btn-danger btn-sm" onclick="return confirm('Bạn có chắc không?')">Xóa</a>
+                </div>
+            </td>
+            <td>
+                <!-- Nút thêm vào giỏ hàng, hiển thị cho tất cả người dùng đã xác
+                thực -->
+                <form th:action="@{/cart/add}" method="post"
+                      sec:authorize="isAuthenticated()">
+                    <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 70px;">
+                    <input type="hidden" th:value="${product.id}"
+                           name="productId"/>
+                    <button type="submit" class="btn btn-warning btn-sm">Thêm Vào Giỏ</button>
+                </form>
+            </td>
+
+
+<!--            <td>-->
+<!--                <form th:action="@{/cart/add}" method="post">-->
+<!--                    <input type="number" name="quantity" min="1" value="1"-->
+<!--                           class="form-control d-inline-block" style="width: 70px;">-->
+<!--                    <input type="hidden" th:value="${product.id}"-->
+<!--                           name="productId"/>-->
+<!--                    <button type="submit" class="btn btn-warning btn-sm">-->
+<!--                        Add to Cart-->
+<!--                    </button>-->
+<!--                </form>-->
+<!--            </td>-->
+        </tr>
+        </tbody>
+    </table>
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
