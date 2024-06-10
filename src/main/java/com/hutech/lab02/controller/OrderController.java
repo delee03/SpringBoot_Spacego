@@ -3,6 +3,7 @@ package com.hutech.lab02.controller;
 import com.hutech.lab02.model.CartItem;
 import com.hutech.lab02.model.Order;
 import com.hutech.lab02.model.Product;
+import com.hutech.lab02.model.User;
 import com.hutech.lab02.service.CartService;
 import com.hutech.lab02.service.OrderService;
 import org.springframework.ui.Model;
@@ -24,17 +25,17 @@ public class OrderController {
         return "/cart/checkout";
     }
     @PostMapping("/submit")
-    public String submitOrder(String customerName) {
+    public String submitOrder(String customerName, String customerPhone, String customerAddress, String customerMethod) {
         List<CartItem> cartItems = cartService.getCartItems();
         if (cartItems.isEmpty()) {
             return "redirect:/cart"; // Redirect if cart is empty
         }
-        orderService.createOrder(customerName, cartItems);
+        orderService.createOrder(customerName, customerPhone, customerAddress, customerMethod, cartItems);
         return "redirect:/order/confirmation";
     }
     @GetMapping("/confirmation")
-    public String orderConfirmation(Model model) {
-        model.addAttribute("message", "Your order has been successfully placed.");
+    public String orderConfirmation(Model model ) {
+        model.addAttribute("message", "Bạn đã đặt hàng thành công  .");
         return "cart/order-confirmation";
     }
 }

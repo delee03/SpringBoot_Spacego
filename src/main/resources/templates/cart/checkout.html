@@ -3,22 +3,90 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layout}">
 <head>
-    <title th:text="${title} ?: 'Your Cart'">Place Order</title>
+    <title th:text="${title} ?: 'Your Cart'">Thanh toán</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body>
 <section layout:fragment="content" class="container mt-3">
+
+    <!-- BREADCRUMB -->
+    <!-- Header Start -->
+    <div class="container-fluid bg-breadcrumb">
+        <div class="container text-center py-5" style="max-width: 900px;">
+            <h3 class="display-3 mb-4 fw-bolder">
+                Trang checkout
+            </h3>
+            <ol class="breadcrumb justify-content-center mb-0">
+                <li class="breadcrumb-item"><a href="/home/index">Trang chủ /</a></li>
+                <li class="breadcrumb-item active"> Thanh toán </li>
+            </ol>
+        </div>
+    </div>
+    <!-- Header End -->
+    <!-- /BREADCRUMB -->
     <h1>Place Your Order</h1>
     <form th:action="@{/order/submit}" method="post">
-        <div class="mb-3">
-            <label for="customerName" class="form-label">Your Name:</label>
-
-            <input type="text" id="customerName" name="customerName" class="form-
-control" required>
-
+        <div class="input-group mt-5">
+            <div class="input-group-prepared">
+                <button class="btn btn-outline-primary">
+                   Tên của bạn
+                </button>
+            </div>
+            <input type="text" id="customerName" name="customerName" class="form-control" required>
         </div>
-        <button type="submit" class="btn btn-primary">Submit Order</button>
+        <div class="input-group mt-5">
+            <div class="input-group-prepared">
+                <button class="btn btn-outline-warning">
+                    Số điện thoại
+                </button>
+            </div>
+            <input type="text" id="customerPhone" name="customerPhone" class="form-control" required>
+        </div>
+        <div class="input-group mt-5">
+            <div class="input-group-prepared">
+                <button class="btn btn-outline-danger">
+                    Địa chỉ
+                </button>
+            </div>
+            <input type="text" id="customerAddress" name="customerAddress" class="form-control" required>
+        </div>
+        <div class="input-group mt-5">
+            <div class="input-group-prepared">
+                <button class="btn btn-outline-success">
+                    Phương thức thanh toán
+                </button>
+            </div>
+            <input type="text" id="customerMethod" name="customerMethod" class="form-control" required>
+        </div>
+
+
+
+<!--        <div class="mb-3 ">-->
+<!--            <label for="customerName" class="form-label"> Tên của bạn :</label>-->
+
+<!--            <input type="text" id="customerName" name="customerName" class="form-control" required>-->
+
+<!--        </div>-->
+<!--        <div class="mb-3 ">-->
+<!--            <label for="customerPhone" class="form-label"> Số điện thoại :</label>-->
+
+<!--            <input type="text" id="customerPhone" name="customerPhone" class="form-control" required>-->
+
+<!--        </div>-->
+<!--        <div class="mb-3 ">-->
+<!--            <label for="customerAddress" class="form-label">Địa chỉ :</label>-->
+
+<!--            <input type="text" id="customerAddress" name="customerAddress" class="form-control" required>-->
+
+<!--        </div>-->
+<!--        <div class="mb-3 ">-->
+<!--            <label for="customerMethod" class="form-label">Phương thức thanh toán :</label>-->
+
+<!--            <input type="text" id="customerMethod" name="customerMethod" class="form-control" required>-->
+
+<!--        </div>-->
+        <button type="submit" class="primary-btn mt-5">Xác nhận</button>
     </form>
 </section>
 </body>

@@ -10,18 +10,122 @@ color: #f00;
 
 body a {
     text-decoration: none !important;
-    color: white;
+    color: #000;
 }
 
-     .section {
+     .section-body {
            min-height: 60vh;
            padding: 50px 0 100px ;
-            background: linear-gradient(rgba(19, 53, 123, 0.2), rgba(19, 53, 123, 0.5)), url("https://images.unsplash.com/photo-1615725802642-936d9aade2ba?q=80&w=1932&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");-->
-           background-position: center center;
-           background-repeat: no-repeat;
-           background-size: cover;
 
 }
+
+header .collapse .nav-link:hover {
+    color: rgb(221, 108, 241) !important;
+}
+header {
+    position: absolute;
+    padding-top:50px;
+    width: 100%;
+    z-index: 100;
+}
+header .collapse .nav-item a {
+    font-size:20px;
+
+}
+
+header .collapse .nav-link::before {
+
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: rgb(221, 108, 241);
+    height: 4px;
+    width: 0;
+    transition: all .5s;
+}
+header .collapse .nav-link:hover::before{
+    width: 100%;
+}
+
+header .collapse .nav-link.active {
+    color: rgb(221, 108, 241) !important;
+}
+header .collapse .nav-link.active::before{
+    width: 100%;
+}
+.navbar-brand i {
+    font-size: 34px;
+    vertical-align: baseline;
+    color: rgb(221, 108, 241) !important;
+}
+.navbar-brand{
+    font-size: 39px;
+}
+.navbar-brand span{
+    font-size: 39px;
+}
+
+/* carousel */
+.carousel .carousel-item .carousel_content {
+    position: absolute;
+    padding: 30px 30px;
+    top: 0;
+    left: 0;
+    top: 50%;
+    left: 50%;
+    color: #fff;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    /* căn giữa theo chiều X dùng với position */
+
+}
+
+.carousel .carousel-item::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:rgba(39, 43, 54, .5);
+}
+
+.carousel_content h1 {
+    font-size: 50px;
+    padding: 30px 0;
+}
+.carousel_content p {
+    font-size: 25px;
+}
+
+.carousel .carousel-item  .carousel_content img {
+
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.carousel-indicators .active {
+    opacity: 1;
+}
+
+.carousel-indicators [data-bs-target] {
+    width: 15px !important;
+    height: 15px !important;
+    border-radius: 50%;
+    margin-left: 9px;
+    margin-right: 9px;
+}
+
+
+
+
 .listProduct .card img {
     width: 391px;
         object-fit: cover;
@@ -30,16 +134,17 @@ body a {
 .primary-btn {
     background-color: #00DBDE;
     background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
+    background-color: #FF9A8B;
+       background-image: linear-gradient(90deg, #FF9A8B 0%, #FF6A88 55%, #FF99AC 100%);
     color: #fff;
     font-weight: 600;
     border-radius: 999px ;
     padding: 12px 40px ;
-    transition: ease-in .4s;
+    transition: all .7s;
 }
 .primary-btn:hover{
-    background-color: #00DBDE;
-    background-image: linear-gradient(270deg, #00DBDE 0%, #FC00FF 100%);
-
+   background-color: #00DBDE;
+      background-image: linear-gradient(90deg, #00DBDE 0%, #FC00FF 100%);
 }
 
 .listProduct .card
@@ -47,38 +152,240 @@ body a {
     min-height: 400px;
 }
 
-footer {
-    padding: 50px 0;
-    background: #000;
-    bac
-}
-.footer-top {
-    margin-left: -20px;
-    padding-bottom: 40px;
-    border-bottom: 1px solid #ccc;
+
+/* PRODUCT */
+.addToCartForm{
+    padding-top : 28px;
+    margin-right: 53px;
 }
 
-.footer-top a {
-    color: #aaa;
-}
-.footer-top i {
-    color: #aaa;
-    margin-left: 20px;
-    width: 50px;
-    height: 50px;
-    line-height: 50px;
-    border-radius: 50%;
-    border: 1px solid #ccc;
-    background-color: #373535;
-    transition: all .3s;
+.listProduct .card:hover .card-footer {
+    border: 2px solid transparent;
+    transition: all .5s;
 }
 
-.footer-top i:hover {
-    background-color: #fff;
-    color: #000;
+.listProduct .card:hover .card-footer {
+    border: 2px solid rgb(221, 108, 241);
 }
 
-.footer-bot{
+
+/* AVAILABLE SECTION*/
+/* Section  start*/
+
+.available{
+    margin: 50px 0 50px;
+    position: relative;
+    background: url(../img/bg-2.avif) no-repeat center;
+    background-size: cover;
+    background-attachment: fixed;
+    padding: 100px 0 120px;
+    text-align: center;
+    color:#fff;
+}
+.available .heading {
+    color: #fff;
+}
+.available::before {
+    content: "";
+    position: absolute;
+    background-color: rgba(7, 10, 12, .72);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.available-content .item {
     margin-top: 40px;
-    color: #aaa;
+    padding: 40px 30px;
+
+    background: rgba( 255, 255, 255, 0.08);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all .4s;
 }
+.available-content .item i {
+    color: rgb(221, 108, 241);
+    font-size: 45px;
+}
+
+.available-content .item h3 {
+    margin: 20px 0;
+}
+.available-content .item:hover {
+    background-color: #000;
+    border: 1px solid #fff;
+}
+
+.award.section{
+    position: relative;
+    padding: 50px 0;
+}
+.award .bg {
+    position: absolute;
+    background: url(../img/memphis_3.png) no-repeat center;
+    width: 100%;
+    background-size: cover;
+    height: 100%;
+    top: 0;
+    left: 0;
+    opacity: .5;
+}
+
+
+.award-left {
+    padding: 50px 30px;
+    background-color: #fff;
+    box-shadow: 0 0 30px 0 rgba(0, 0, 0, .3);
+    border-radius: 10px;
+
+}
+.award-left h2 {
+    font-size: 40px;
+    font-weight: 700;
+}
+.award-left p {
+    margin-top: 20px;
+    line-height: 2;
+}
+
+.award-right {
+    padding: 45px 0;
+}
+.award-right img {
+    height: 60%;
+}
+
+
+/* footer */
+footer{
+    padding: 50px 0;
+    background-color: #141415;
+}
+.footer_top .col-4 h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: rgb(221, 108, 241);
+    letter-spacing: 1px;
+    margin-bottom: 2.4rem;
+}
+.footer_top p {
+    color: #8b8b96;
+    font-size: 1.2rem;
+    line-height: 1.8em;
+    margin-bottom: 3rem;
+    letter-spacing: 1px;
+}
+
+.footer_link, .footer_contact {
+    margin-bottom: 1.2rem;
+}
+
+.footer_link i {
+    font-size: 1.2rem;
+    color: rgb(221, 108, 241);
+    margin-right: 1.6rem;
+}
+.footer_link a, .footer_contact a {
+    color: #8b8b8b96;
+    font-size: 1.2rem;
+    line-height: 1.2em;
+    letter-spacing: 1px;
+    transition: all 0.5s;
+}
+.footer_link a:hover, .footer_contact a:hover {
+    color: #fff;
+}
+
+.footer_contact i {
+    font-size: 1.2rem;
+    width: 32px;
+    height: 32px;
+    border: 1px solid #4b4b50;
+    color: white;
+    text-align: center;
+    line-height: 32px;
+    margin-right: 1.6rem;
+}
+
+.footer_form label {
+    color: rgb(221, 108, 241)   ;
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+.footer_form input {
+    color: #888;
+    height: auto;
+    padding: 14px;
+    border-radius: 0;
+    letter-spacing: 1px;
+
+}
+
+.footer_form{
+    margin: 3rem 0;
+}
+
+.footer_form button {
+    background-color: rgb(221, 108, 241);
+    padding: 14px 35px;
+    letter-spacing: 1px;
+    border-radius: 0;
+    color: white;
+    outline: none;
+    transition: all 0.5s;
+}
+
+.footer_form button:hover {
+    background-color: #ec1955;
+    color:white;
+}
+
+.footer_bot{
+    font-size: 1.2rem;
+    background-color: #0f0f10;
+    text-align: center;
+    padding: 1rem 0;
+    letter-spacing: 1px;
+    color: white;
+}
+
+.footer_bot a{
+    color: rgb(221, 108, 241);
+}
+
+.backToTop {
+    position: fixed;
+
+    right: 50px;
+    bottom: 50px;
+
+}
+
+.backToTop i {
+    background-color: rgb(221, 108, 241);
+
+    color: #0BBBCC;
+    border: 2px solid #0BBBCC;
+    width: 40px;
+    height: 40px;
+    font-size: 2rem;
+    text-align: center;
+    line-height: 36px;
+    border-radius: 50%;
+}
+
+.cd-top--is-visible {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .cd-top--fade-out {
+    opacity: .5;
+  }
+  .back-to-top:focus {
+    opacity: 1;
+  }

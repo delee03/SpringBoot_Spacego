@@ -17,12 +17,12 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 fw-bolder">
+            <h3 class="display-3 mb-4 fw-bolder">
                 Danh sách sản phẩm
             </h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="/home/index">Trang chủ /</a></li>
-                <li class="breadcrumb-item active text-white">Sản phẩm</li>
+                <li class="breadcrumb-item active">Sản phẩm</li>
             </ol>
         </div>
     </div>
@@ -30,7 +30,7 @@
     <!-- /BREADCRUMB -->
 
     <div>
-        <a th:href="@{/products/add}" class="btn btn-primary mb-3 me-auto">Thêm sản phẩm</a>
+        <a th:href="@{/products/add}" class="btn btn-warning mb-3 me-auto">Thêm sản phẩm</a>
     </div>
 
     <div class="listProduct">
@@ -48,16 +48,26 @@
                            <h4 class="card-title" th:text="${product.name}">
 
                            </h4>
-                           <span  th:text="${product.price}"></span>
+                           <strong  style=" margin-top:20px; color: rgb(221, 108, 241);" th:text="${product.price} "></strong>
                            <p ></p>
                            <span th:text="${product.category.name}"></span>
                            <p class="card-text" th:text="${product.description}">
                            </p>
 
                        </div>
-                       <div class="card-footer py-4 text-center">
+                       <div class="card-footer py-4 text-center" sec:authorize="hasAnyAuthority('ADMIN')">
                            <a th:href="@{/products/edit/{id}(id=${product.id})}" class="primary-btn me-4">Sửa</a>
                            <a th:href="@{/products/delete/{id}(id=${product.id})}" class="primary-btn" onclick="return confirm('Are you sure?')">Xóa</a>
+                       </div>
+                       <div class="card-footer py-4 text-center">
+                           <a th:href="@{/products/edit/{id}(id=${product.id})}" class="primary-btn my-4">Xem chi tiết</a>
+                           <form class="addToCartForm" th:action="@{/cart/add}" method="post"
+                                 sec:authorize="isAuthenticated()">
+                               <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 50px;">
+                               <input type="hidden" th:value="${product.id}"
+                                      name="productId"/>
+                               <button type="submit" class="primary-btn ">Thêm Vào Giỏ</button>
+                           </form>
                        </div>
                    </div>
                </div>
@@ -66,9 +76,56 @@
     </div>
 
 
-    <table class="table table-bordered table-hover">
+    <section class="available section">
+        <div class="container">
+            <div class="heading mx-auto position-relative">
+                <h2> Chúng tôi có gì </h2>
+                <p>
+                    Vestibulum ante ipsum primis in faucibus orci luctus et
+                    ultrices posuere cubilia Curae; Nulla mollis dapibus
+                    nunc, ut rhoncus turpis sodales quis. Integer sit amet
+                    mattis quam.
+                </p>
+            </div>
+            <div
+                    class="row gap-4 available-content justify-content-center align-items-center g-2"
+            >
+                <div class="col-12 col-md-6 col-xxl-3 item">
+                    <i class="fa-solid fa-paintbrush"></i>
+                    <h3>Thiết kế </h3>
+                    <p>
+                        Vestibulum ante ipsum primis in faucibus orci luctus
+                        et ultrices posuere cubilia Curae; Nulla mollis
+                        dapibus nunc
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 col-xxl-3 item">
+                    <i class="fa fa-shekel-sign"></i>
+                    <h3> Tiếp thị </h3>
+                    <p>
+                        Vestibulum ante ipsum primis in faucibus orci luctus
+                        et ultrices posuere cubilia Curae; Nulla mollis
+                        dapibus nunc
+                    </p>
+                </div>
+                <div class="col-12 col-md-6 col-xxl-3 item">
+                    <i class="fa fa-camera"></i>
+                    <h3> Công nghệ </h3>
+                    <p>
+                        Vestibulum ante ipsum primis in faucibus orci luctus
+                        et ultrices posuere cubilia Curae; Nulla mollis
+                        dapibus nunc
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <h2>Danh sách sản phẩm </h2>
+
+    <table class="table table-bordered table-hover mt-5">
         <thead class="table-primary">
-        <h6>TESST</h6>
+
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -92,7 +149,7 @@
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
             <td th:text="${product.category.name}"></td>
-            <td>
+            <td style="margin-top:15px">
                 <!-- Hiển thị nút sửa và xóa chỉ dành cho người dùng ADMIN -->
                 <div sec:authorize="hasAuthority('ADMIN')">
                     <a th:href="@{/products/edit/{id}(id=${product.id})}"
@@ -104,7 +161,7 @@
             <td>
                 <!-- Nút thêm vào giỏ hàng, hiển thị cho tất cả người dùng đã xác
                 thực -->
-                <form th:action="@{/cart/add}" method="post"
+                <form class="addToCartForm" th:action="@{/cart/add}" method="post"
                       sec:authorize="isAuthenticated()">
                     <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 70px;">
                     <input type="hidden" th:value="${product.id}"

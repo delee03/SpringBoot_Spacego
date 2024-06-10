@@ -13,12 +13,12 @@
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
         <div class="container text-center py-5" style="max-width: 900px;">
-            <h3 class="text-white display-3 mb-4 fw-bolder">
+            <h3 class=" display-3 mb-4 fw-bolder">
                 Sửa thông tin sản phẩm
             </h3>
             <ol class="breadcrumb justify-content-center mb-0">
                 <li class="breadcrumb-item"><a href="#">Trang chủ /</a></li>
-                <li class="breadcrumb-item active text-white">Sửa sản phẩm </li>
+                <li class="breadcrumb-item active">Sửa sản phẩm </li>
             </ol>
         </div>
     </div>
@@ -27,39 +27,38 @@
     <form th:action="@{/products/update/{id}(id=${product.id})}"
           th:object="${product}" method="post" enctype="multipart/form-data" class="needs-validation" novalidate>
         <div class="mb-3">
-            <label for="name" class="form-label text-white">Tên sản phẩm :</label>
+            <label for="name" class="form-label ">Tên sản phẩm :</label>
             <input type="text" th:field="*{name}" class="form-control" id="name"
                    required>
             <div class="text-danger" th:if="${#fields.hasErrors('name')}"
                  th:errors="*{name}"></div>
         </div>
         <div class="mb-3">
-            <label for="mainImage" class="form-label text-white">Hình ảnh :</label>
+            <label for="mainImage" class="form-label">Hình ảnh :</label>
             <input type="file"  class="form-control" id="mainImage" name="mainImage"
                    required>
            <!-- <div class="text-danger" th:if="${#fields.hasErrors('image')}"
                  th:errors="*{image}"></div>-->
         </div>
         <div class="mb-3">
-            <label for="price" class="form-label text-white">Price:</label>
+            <label for="price" class="form-label ">Price:</label>
             <input type="text" th:field="*{price}" class="form-control" id="price"
                    required>
         </div>
         <div class="mb-3">
-            <label for="category" class="form-label text-white">Category:</label>
-            <select th:field="*{category}" class="form-control" id="category">
+            <label for="category" class="form-label ">Danh mục:</label>
+            <select th:field="*{category}" class="form-control" id="category" placeholder="Danh mục">
                 <option th:each="category : ${categories}"
-                        th:value="${category.id}" th:text="${category.name}" th:selected="${category.id ==
-product.category.id}"></option>
+                        th:value="${category.id}" th:text="${category.name}"></option>
             </select>
         </div>
         <div class="mb-3">
-            <label for="description" class="form-label text-white">Description:</label>
+            <label for="description" class="form-label">Mô tả:</label>
             <textarea th:field="*{description}" class="form-control"
                       id="description" required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary">Lưu </button>
-        <a th:href="@{/products}" class="btn btn-link">Hủy</a>
+        <button type="submit" class="primary-btn">Cập nhật </button>
+        <a th:href="@{/products}" class="btn btn-outline-danger">Hủy</a>
     </form>
 </section>
 <script

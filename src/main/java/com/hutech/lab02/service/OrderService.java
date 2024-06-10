@@ -21,8 +21,11 @@ public class OrderService {
     @Autowired
     private CartService cartService; // Assuming you have a CartService
     @Transactional
-    public Order createOrder(String customerName, List<CartItem> cartItems) {
+    public Order createOrder(String customerName,  String customerPhone, String customerAddress, String customerMethod,List<CartItem> cartItems) {
         Order order = new Order();
+        order.setCustomerPhone(customerPhone);
+        order.setCustomerAddress(customerAddress);
+        order.setCustomerMethod(customerMethod);
         order.setCustomerName(customerName);
         order = orderRepository.save(order);
         for (CartItem item : cartItems) {

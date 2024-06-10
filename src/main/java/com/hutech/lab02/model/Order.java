@@ -20,6 +20,9 @@ public class Order {
     private Long id;
 
     private String customerName;
+    private String customerAddress;
+    private String customerPhone;
+    private String customerMethod;
 
     @OneToMany(mappedBy = "order")
     private List<OrderDetail> orderDetails;

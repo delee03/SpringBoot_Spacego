@@ -2,7 +2,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security5"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+    lang="vi"
+>
 
 <head>
     <meta charset="UTF-8">
@@ -16,9 +18,9 @@
 
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-light bg-primary">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background:rgb(221, 108, 241)">
     <div class="container-fluid">
-        <div style="vertical-align: middle"><a class="navbar-brand text-white" href="/home/index">Space Go</a></div>
+        <div style="vertical-align: middle"><a class="navbar-brand text-white" href="#">Cửa hàng</a></div>
        <!-- <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>-->
@@ -31,10 +33,10 @@
                     <a class="nav-link text-white active" aria-current="page" href="/categories">Danh mục</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
-                    <a th:href="@{/products/add}" class="btn btn-primary mb-3">Thêm sản phẩm</a>
+                    <a th:href="@{/products/add}" class="nav-link text-white active">Thêm sản phẩm</a>
                 </li>
                 <li class="nav-item" sec:authorize="hasAnyAuthority('ADMIN')">
-                    <a th:href="@{/categories/add}" class="btn btn-primary mb-3">Thêm danh mục</a>
+                    <a th:href="@{/categories/add}" class="nav-link text-white active">Thêm danh mục</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-center">
@@ -56,34 +58,364 @@
         </div>
     </div>
 </nav>
+<header>
+    <nav class="navbar navbar-expand-lg bg-transparent  ">
+        <div class="container">
+            <a class="navbar-brand" href="/products">
+                <i class="fa fa-dice-d20 text-white fs-1"></i>
+                <span class="text-white fs-2">SpaceGo</span>
+            </a>
+            <button
+                    class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav"
+                    aria-controls="navbarNav"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div
+                    class="collapse navbar-collapse justify-content-end"
+                    id="navbarNav"
+            >
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a
+                                class="nav-link me-3 position-relative active text-white"
+                                aria-current="page"
+                                href="#"
+                        >Trang chủ </a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                class="nav-link me-3 position-relative text-white"
+                                aria-current="page"
+                                href="#"
+                        >Sản phẩm</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                class="nav-link me-3 position-relative text-white"
+                                href="/cart"
+                        >Giỏ hàng</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                class="nav-link me-3 position-relative text-white"
+                                href="#"
+                        >Service</a
+                        >
+                    </li>
+                    <li class="nav-item">
+                        <a
+                                class="nav-link me-3 position-relative text-white"
+                                aria-disabled="true"
+                        >Contact</a
+                        >
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- place navbar here -->
+</header>
 
-<div class="section">
+<section class="carousel">
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0"
+                    class="active"
+                    aria-current="true"
+                    aria-label="Slide 1"
+            ></button>
+            <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1"
+                    aria-label="Slide 2"
+            ></button>
+            <button
+                    type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2"
+                    aria-label="Slide 3"
+            ></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active vh-100">
+                <img
+                        src="/img/bg-1.jpg"
+                        class="d-block w-100 h-100 object-fit-cover"
+                        alt="..."
+                />
+                <div class="carousel_content">
+                    <img
+                            src="/img/01-3.jpg"
+                            alt=""
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".3s"
+                    />
+                    <h1
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".7s"
+                    >
+                        Đổi mới, Sáng tạo
+                    </h1>
+                    <p
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay="1s"
+                    >
+                        Bạn cần mua gì ở SpaceGo nè
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item vh-100">
+                <img
+                        src="/img/bg-22.avif"
+                        class="d-block w-100 h-100 object-fit-cover"
+                        alt="..."
+                />
+                <div class="carousel_content">
+                    <img
+                            src="/img/03-3.jpg"
+                            alt=""
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".3s"
+                    />
+                    <h1
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".7s"
+                    >
+                        Theo đuổi ước mơ
+                    </h1>
+                    <p
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay="1s"
+                    >
+                        Chúng tôi sẽ giúp bạn tìm sản phẩm tốt nhất
+                    </p>
+                </div>
+            </div>
+            <div class="carousel-item vh-100">
+                <img
+                        src="/img/bg-33.jpg"
+                        class="d-block w-100 h-100 object-fit-cover"
+                        alt="..."
+                />
+                <div class="carousel_content">
+                    <img
+                            src="/img/02-3.jpg"
+                            alt=""
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".3s"
+                    />
+                    <h1
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay=".7s"
+                    >
+                        Khám phá sản phẩm
+                    </h1>
+                    <p
+                            class="wow animate__animated animate__fadeInUp"
+                            data-wow-duration="2s"
+                            data-wow-delay="1s"
+                    >
+                        Chúng tôi có tất cả sản phẩm tốt nhất cho bạn
+                    </p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</section>
+
+
+<div class="section-body">
 
     <section layout:fragment="content" class="container">
-        &lt;!&ndash; Nội dung cụ thể của từng trang sẽ được đặt tại đây &ndash;&gt;
+        &lt;!&ndash;-Nội dung cụ thể của từng trang sẽ được đặt tại đây &ndash;&gt;
     </section>
 </div>
 
-
-<footer>
+<section class="award section">
+    <div class="bg"></div>
     <div class="container">
-        <img src="https://cyber-my-portfolio.vercel.app/img/g1.jpg"/>
-
-
-        <div class="content-footer">
-            <div class="footer-top text-center ">
-                <a href="#"><i class=" fab fa-facebook-f"></i></a>
-                <a href="#"><i class=" fab fa-twitter"></i></a>
-                <a href="#"><i class=" fab fa-google-plus-g"></i></a>
-                <a href="#"><i class=" fab fa-instagram"></i></a>
-                <a href="#"><i class=" fab fa-linkedin-in"></i></a>
+        <div class="row award-content">
+            <div class="col-12 col-lg-5">
+                <div class="award-left">
+                    <h2>Our Achievement and Award</h2>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur
+                        adipiscing elit. Ut elit tellus, luctus nec
+                        ullamcorper mattis, pulvinar dapibus leo.
+                    </p>
+                </div>
             </div>
-            <div class="footer-bot text-center">
-                <p>Copyright © 2020 All rights reserved | This template is made with by Pham Tien Thuan Phat</p>
+            <div class="col-12 col-lg-7">
+                <div class="award-right">
+                    <p>
+                        Luctus porta semper aptent morbi. Vestibulum
+                        lectus tempus augue dictumst enim commodo
+                        facilisis. Mus laoreet scelerisque habitant urna
+                        dui sem diam. Purus dis nam eget. Scelerisque
+                        placerat lectus lorem etiam. Elementum integer
+                        phasellus lectus.
+                    </p>
+                    <div class="achive row gap-3">
+                        <div
+                                class="col-6 col-sm-3 col-md-3 col-xxl-2 item"
+                        >
+                            <img src="./img/award-1.png" alt="" />
+                        </div>
+                        <div
+                                class="col-6 col-sm-3 col-md-3 col-xxl-2 item"
+                        >
+                            <img src="./img/award-2.png" alt="" />
+                        </div>
+                        <div
+                                class="col-6 col-sm-3 col-md-3 col-xxl-2 item"
+                        >
+                            <img src="./img/award-3.png" alt="" />
+                        </div>
+                        <div
+                                class="col-6 col-sm-3 col-md-3 col-xxl-2 item"
+                        >
+                            <img src="./img/award-4.png" alt="" />
+                        </div>
+                        <div
+                                class="col-6 col-sm-3 col-md-3 col-xxl-2 item"
+                        >
+                            <img src="./img/award-5.png" alt="" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</section>
+
+
+<!-- Footer -->
+<footer>
+    <div class="footer_top ">
+        <div class="container">
+            <div class="footer_grid row">
+                <div class="col-4">
+                    <h3> Về chúng tôi </h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Molestias asperiores qui ut excepturi, delectus aspernatur.
+                    </p>
+                </div>
+                <div class="col-4">
+                    <h3>Tin tức </h3>
+                    <div class="footer_link">
+                        <i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="#!">Trang chủ.</a>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="#!">Sản phẩm.</a>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="#!">Danh mục.</a>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="#!">About.</a>
+                    </div>
+                    <div class="footer_link">
+                        <i class="fa fa-long-arrow-alt-right"></i>
+                        <a href="#!">Dịch vụ.</a>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <h3>Thông tin liên hệ </h3>
+                    <div class="footer_contact">
+                        <i class="fa fa-map-marker-alt"></i>
+                        <a href="#!"> Khu CNC, Thủ đức Campus, TPHCM</a>
+                    </div>
+
+                    <div class="footer_contact">
+                        <i class="far fa-envelope"></i>
+                        <a href="mailto:info@cybersoft.edu.vn"> info@thuanphat.dev.vn</a>
+                    </div>
+
+                    <div class="footer_contact">
+                        <i class="fas fa-phone-alt"></i>
+                        <a href="tel:0961051014"> 096.105.1014</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer_form ">
+        <div class="container">
+            <form class="row g-3">
+                <div class="col-4 col-form-label">
+                    <label for="EmailForm" >Sign up for our Newsletter</label>
+                </div>
+                <div class="col-6">
+
+                    <input type="email" class="form-control" id="EmailForm" value="Email Address...">
+                </div>
+
+                <div class="col-2 text-center">
+                    <button type="submit" class="btn">SUBMIT</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+    <div class="footer_bot">
+        <div>© 2024 SpaceGo. All rights reserved | Design by <a href="#">THUAN PHAT</a></div>
+    </div>
+
 </footer>
+
+<!-- Back To TOp  -->
+
+<a href="#" class="backToTop cd-top text-replace js-cd-top">
+    <i class="fa fa-angle-up"></i>
+</a>
+
+<!-- cd-top text-replace js-cd-top -->
+<!--Jquery-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<!-- WayPoint -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js" ></script>
+
+<script src="../../resources/static/js/back-to-top-master/main.js"></script>
+<script src="../../resources/static/js/back-to-top-master/util.js"></script>
+
+<!--Boostrap 5-->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
