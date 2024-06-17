@@ -359,7 +359,7 @@ footer{
 
 .backToTop {
     position: fixed;
-
+visibility:hidden;
     right: 50px;
     bottom: 50px;
 
