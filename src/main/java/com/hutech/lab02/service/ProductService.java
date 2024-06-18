@@ -3,12 +3,14 @@ package com.hutech.lab02.service;
 import com.hutech.lab02.model.Product;
 import com.hutech.lab02.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.NotFound;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 import jakarta.validation.constraints.NotNull;
 
 import org.springframework.web.bind.annotation.RequestParam;
+import org.w3c.dom.events.EventException;
 
 import java.io.IOException;
 import java.util.List;
@@ -35,6 +37,11 @@ public class ProductService {
     public Product addProduct(Product product) throws IOException {
 
         return productRepository.save(product);
+    }
+    //find product by ID
+    public Product findProductById(Long id) {
+        Optional<Product> product = productRepository.findById(id);
+        return product.orElseThrow(() -> new ProductNotFoundException("Product not found with id: " + id));
     }
 
     // Update an existing product

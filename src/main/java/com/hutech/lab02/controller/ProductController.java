@@ -2,7 +2,9 @@ package com.hutech.lab02.controller;
 
 import com.hutech.lab02.model.Category;
 import com.hutech.lab02.model.Product;
+import com.hutech.lab02.model.ProductImage;
 import com.hutech.lab02.service.CategoryService;
+import com.hutech.lab02.service.ProductImageService;
 import com.hutech.lab02.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.Base64;
 import java.util.UUID;
 
@@ -36,6 +39,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;  // Đảm bảo bạn đã inject CategoryService
+    @Autowired
+    private ProductImageService productImageService;
     // Display a list of all products
     @GetMapping
     public String showProductList(Model model) {
@@ -54,7 +59,7 @@ public class ProductController {
 
     // Process the form for adding a new product
     @PostMapping("/add")
-    public String addProduct(@Valid Product product, BindingResult result, @RequestParam("mainImage") MultipartFile mainImage) throws IOException {
+    public String addProduct(@Valid Product product, BindingResult result, @RequestParam("mainImage") MultipartFile mainImage,   @RequestParam("productimages") MultipartFile[] imageList) throws IOException {
 
         if (!mainImage.isEmpty()) {
             try {
@@ -66,14 +71,48 @@ public class ProductController {
         }
 
         productService.addProduct(product);
+        for (MultipartFile image : imageList) {
+            if (!image.isEmpty()) {
+                try {
+                    String imageUrl = saveImageStatic(image);
+                    ProductImage productImage = new ProductImage();
+                    productImage.setImagePath("/img/" +imageUrl);
+                    productImage.setProduct(product);
+                    product.getImages().add(productImage);
+                    productImageService.addProductImage(productImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         return "redirect:/products";
     }
     private String saveImageStatic(MultipartFile image) throws IOException {
-        File saveFile = new ClassPathResource("static/img").getFile();
-        String fileName = UUID.randomUUID()+ "." + StringUtils.getFilenameExtension(image.getOriginalFilename());
-        Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + fileName);
-        Files.copy(image.getInputStream(), path);
-        return fileName;
+//        File saveFile = new ClassPathResource("static/img").getFile();
+//        String fileName = UUID.randomUUID()+ "." + StringUtils.getFilenameExtension(image.getOriginalFilename());
+//        Path path = Paths.get(saveFile.getAbsolutePath() + File.separator + fileName);
+//        Files.copy(image.getInputStream(), path);
+//        return fileName;
+        Path dirImages = Paths.get("target/classes/static/img");
+        if (!Files.exists(dirImages)) {
+            Files.createDirectories(dirImages);
+        }
+
+        String newFileName = UUID.randomUUID()+ "." + StringUtils.getFilenameExtension(image.getOriginalFilename());
+
+        Path pathFileUpload = dirImages.resolve(newFileName);
+        Files.copy(image.getInputStream(), pathFileUpload,
+                StandardCopyOption.REPLACE_EXISTING);
+        return newFileName;
+    }
+
+
+    @GetMapping("/product-detail/{id}")
+    public String getProductDetail(@PathVariable Long id, Model model) {
+        Product product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categoryService.getAllCategories());
+        return "products/product-detail"; // Đường dẫn tới tệp product-detail.html trong thư mục templates/products
     }
 
     // For editing a product

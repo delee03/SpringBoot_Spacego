@@ -1,6 +1,6 @@
 package com.hutech.lab02;
 
-
+import com.hutech.lab02.service.OauthService;
 import com.hutech.lab02.service.UserService;
 import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
@@ -12,11 +12,13 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.core.oidc.user.DefaultOidcUser;
 import org.springframework.security.web.SecurityFilterChain;
 @Configuration // Đánh dấu lớp này là một lớp cấu hình cho Spring Context.
 @EnableWebSecurity // Kích hoạt tính năng bảo mật web của Spring Security.
 @RequiredArgsConstructor // Lombok tự động tạo constructor có tham số cho tất cả các trường final.
 public class SecurityConfig {
+    private final OauthService oauthService;
     private final UserService userService; // Tiêm UserService vào lớp cấu hình này.
     @Bean // Đánh dấu phương thức trả về một bean được quản lý bởi Spring Context.
     public UserDetailsService userDetailsService() {
@@ -38,7 +40,7 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/css/**", "/js/**", "/", "/oauth/**", "/register", "/error",
-                                "/products", "/cart", "/cart/**")
+                                "/products", "/cart", "/cart/**","/img/**")
                         .permitAll() // Cho phép truy cập không cần xác thực.
                         .requestMatchers("/products/edit/**", "/products/add", "/products/delete")
                         .hasAnyAuthority("ADMIN") // Chỉ cho phép ADMIN truy cập.
@@ -62,6 +64,25 @@ public class SecurityConfig {
                         .failureUrl("/login?error") // Trang đăng nhập thất bại.
                         .permitAll()
                 )
+                .oauth2Login(oauth2Login -> oauth2Login
+                        .loginPage("/login")
+                        .failureUrl("/login?error")
+                        .userInfoEndpoint (userInfoEndpoint ->userInfoEndpoint
+                                .userService (oauthService))
+
+                        .successHandler(
+                        (request, response,authentication) -> {
+                             var oidcUser =
+                            (DefaultOidcUser) authentication.getPrincipal();
+                            userService.saveOauthUser (oidcUser.getEmail(), oidcUser.getName());
+                            response.sendRedirect("/products");
+                        }
+
+
+                ).permitAll()
+
+                )
+
                 .rememberMe(rememberMe -> rememberMe
                         .key("hutech")
                         .rememberMeCookieName("hutech")

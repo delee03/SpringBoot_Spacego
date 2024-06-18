@@ -8,7 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
-
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -25,7 +26,8 @@ public class Product {
     private Double price;
     private String description;
     private String mainImage;
-
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ProductImage> images = new ArrayList<>();
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;

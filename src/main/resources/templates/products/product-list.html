@@ -6,13 +6,208 @@
       lang="vi">
 <head>
     <title th:text="${title} ?: 'Product'">Product</title>
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<!--    <link rel="stylesheet"-->
+<!--          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">-->
 
 </head>
 <body>
 
 <section layout:fragment="content">
+
+    <header>
+        <nav class="navbar navbar-expand-lg bg-transparent  ">
+            <div class="container">
+                <a class="navbar-brand" href="/products">
+                    <i class="fa fa-dice-d20 text-white fs-1"></i>
+                    <span class="text-white fs-2">SpaceGo</span>
+                </a>
+                <button
+                        class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#navbarNav"
+                        aria-controls="navbarNav"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div
+                        class="collapse navbar-collapse justify-content-end"
+                        id="navbarNav"
+                >
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link me-3 position-relative active text-white"
+                                    aria-current="page"
+                                    href="#"
+                            >Trang chủ </a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link me-3 position-relative text-white"
+                                    aria-current="page"
+                                    href="#"
+                            >Sản phẩm</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link me-3 position-relative text-white"
+                                    href="/cart"
+                            >Giỏ hàng</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link me-3 position-relative text-white"
+                                    href="#"
+                            >Service</a
+                            >
+                        </li>
+                        <li class="nav-item">
+                            <a
+                                    class="nav-link me-3 position-relative text-white"
+                                    aria-disabled="true"
+                            >Contact</a
+                            >
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- place navbar here -->
+    </header>
+
+    <section class="carousel ps-0 pe-0">
+        <div id="carouselExampleIndicators" class="carousel slide">
+            <div class="carousel-indicators">
+                <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="0"
+                        class="active"
+                        aria-current="true"
+                        aria-label="Slide 1"
+                ></button>
+                <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="1"
+                        aria-label="Slide 2"
+                ></button>
+                <button
+                        type="button"
+                        data-bs-target="#carouselExampleIndicators"
+                        data-bs-slide-to="2"
+                        aria-label="Slide 3"
+                ></button>
+            </div>
+            <div class="carousel-inner">
+                <div class="carousel-item active vh-100">
+                    <img
+                            src="/img/bg-1.jpg"
+                            class="d-block w-100 h-100 object-fit-cover"
+                            alt="..."
+                    />
+                    <div class="carousel_content">
+                        <img
+                                src="/img/01-3.jpg"
+                                alt=""
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".3s"
+                        />
+                        <h1
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".7s"
+                        >
+                            Đổi mới, Sáng tạo
+                        </h1>
+                        <p
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay="1s"
+                        >
+                            Bạn cần mua gì ở SpaceGo nè
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item vh-100">
+                    <img
+                            src="/img/bg-22.avif"
+                            class="d-block w-100 h-100 object-fit-cover"
+                            alt="..."
+                    />
+                    <div class="carousel_content">
+                        <img
+                                src="/img/03-3.jpg"
+                                alt=""
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".3s"
+                        />
+                        <h1
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".7s"
+                        >
+                            Theo đuổi ước mơ
+                        </h1>
+                        <p
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay="1s"
+                        >
+                            Chúng tôi sẽ giúp bạn tìm sản phẩm tốt nhất
+                        </p>
+                    </div>
+                </div>
+                <div class="carousel-item vh-100">
+                    <img
+                            src="/img/bg-33.jpg"
+                            class="d-block w-100 h-100 object-fit-cover"
+                            alt="..."
+                    />
+                    <div class="carousel_content">
+                        <img
+                                src="/img/02-3.jpg"
+                                alt=""
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".3s"
+                        />
+                        <h1
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay=".7s"
+                        >
+                            Khám phá sản phẩm
+                        </h1>
+                        <p
+                                class="wow animate__animated animate__fadeInUp"
+                                data-wow-duration="2s"
+                                data-wow-delay="1s"
+                        >
+                            Chúng tôi có tất cả sản phẩm tốt nhất cho bạn
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </section>
+
     <!-- BREADCRUMB -->
     <!-- Header Start -->
     <div class="container-fluid bg-breadcrumb">
@@ -29,11 +224,13 @@
     <!-- Header End -->
     <!-- /BREADCRUMB -->
 
-    <div>
-        <a th:href="@{/products/add}" class="btn btn-warning mb-3 me-auto">Thêm sản phẩm</a>
-    </div>
+<!--    <div>-->
+<!--        <a th:href="@{/products/add}" class="btn btn-warning mb-3 me-auto">Thêm sản phẩm</a>-->
+<!--    </div>-->
 
-    <div class="listProduct">
+
+
+    <div class="listProduct ">
        <div class="container">
            <div class="row g-5">
                <div  th:each="product : ${products}" class="col-4 item">
@@ -60,7 +257,8 @@
                            <a th:href="@{/products/delete/{id}(id=${product.id})}" class="primary-btn" onclick="return confirm('Are you sure?')">Xóa</a>
                        </div>
                        <div class="card-footer py-4 text-center">
-                           <a th:href="@{/products/edit/{id}(id=${product.id})}" class="primary-btn my-4">Xem chi tiết</a>
+                           <a th:href="@{/products/product-detail/{id}(id=${product.id})}" class="primary-btn my-4">Xem chi tiết</a>
+
                            <form class="addToCartForm" th:action="@{/cart/add}" method="post"
                                  sec:authorize="isAuthenticated()">
                                <input type="number" name="quantity" min="1" value="1" class="form-control d-inline-block" style="width: 50px;">
@@ -130,6 +328,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Image</th>
+            <th>Images Product</th>
             <th>Price</th>
             <th>Description</th>
             <th>Category Name</th>
@@ -145,7 +344,13 @@
                <img th:src="@{${product.mainImage}}" alt="Product Image" style="max-width: 100px; max-height: 100px;">
 
             </td>
-
+            <td>
+                <div class="flex space-x-2 mt-2">
+                    <div th:each="image : ${product.images}">
+                        <img th:src="${image.imagePath}" alt="Thumbnail 1" style="max-width: 100px; max-height: 100px;" class="thumbnail rounded-lg">
+                    </div>
+                </div>
+            </td>
             <td th:text="${product.price}"></td>
             <td th:text="${product.description}"></td>
             <td th:text="${product.category.name}"></td>

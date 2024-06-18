@@ -58,6 +58,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+
+
 <!--Spring data JPA gip quản lí dữ liệu trong các ứng dụng Java qua JPA-->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -97,8 +99,11 @@
 			<artifactId>hibernate-validator</artifactId>
 			<version>8.0.1.Final</version>
 		</dependency>
-
-
+		<!-- Login Oauth 2 Client -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+		</dependency>
 
 	</dependencies>
 

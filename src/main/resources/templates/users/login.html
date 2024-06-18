@@ -10,7 +10,12 @@
 </head>
 <body>
 <section layout:fragment="content" class="container mt-5">
-    <h1 class="mb-4">Login</h1>
+    <h1 class="mb-4">Login into SpaceGo</h1>
+
+    <a href="/oauth2/authorization/google"
+       class="btn btn-outline-danger btn-floating m-1" role="button">
+        Login with Google
+    </a>
     <form th:action="@{/login}" method="post">
         <div th:if="${param.error}" class="alert alert-danger">
             Invalid username and password.
